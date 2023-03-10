@@ -1,0 +1,85 @@
+﻿@model Submission
+@{
+    ViewData["Title"] = "Submit";
+}
+<!-- page header -->
+<div class="jumbotron-fluid">
+    <div class="container-fluid row p-3 ml-0">
+        <h1>Add a song and its info here!</h1>
+    </div>
+</div>
+
+<!-- page content -->
+<div class="container-fluid">
+    <form method="post">
+        <div class="row mb-4">
+            <!--submission data-->
+            <h4>Song Info:</h4>
+            <div class="col-sm-3">
+                <label asp-for="Song.SongName">Song Name: </label><br />
+                <input asp-for="Song.SongName" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.ReleaseDate">Release Date: </label><br />
+                <input type="date" asp-for="Song.ReleaseDate" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.SongLength">Song Length: </label><br />
+                <input asp-for="Song.SongLength" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.BitRate">Song Bit Rate: </label><br />
+                <input asp-for="Song.BitRate" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.SongLink">Song Link: </label><br />
+                <input asp-for="Song.SongLink" /><br />
+            </div><p></p>
+
+            <h4>Artist Info:</h4>
+            <div class="col-sm-3">
+                <label asp-for="Song.Artist.PublicAlias">Public Alias: </label><br />
+                <input asp-for="Song.Artist.PublicAlias" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.Artist.FirstName">First Name: </label><br />
+                <input asp-for="Song.Artist.FirstName" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.Artist.LastName">Last Name: </label><br />
+                <input asp-for="Song.Artist.LastName" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.Artist.AffiliatedLabels">Affiliated Labels: </label><br />
+                <input asp-for="Song.Artist.AffiliatedLabels" /><br />
+            </div><p></p>
+
+            <h4>Album Info:</h4>
+            <div class="col-sm-3">
+                <label asp-for="Song.Album.AlbumName">Album Title: </label><br />
+                <input asp-for="Song.Album.AlbumName" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.Album.GroupName">Group Name: </label><br />
+                <input asp-for="Song.Album.GroupName" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.Album.ReleaseDate">Release Date: </label><br />
+                <input type="date" asp-for="Song.Album.ReleaseDate" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.Album.TrackTotal">Track Total: </label><br />
+                <input asp-for="Song.Album.TrackTotal" /><br />
+            </div>
+            <div class="col-sm-3">
+                <label asp-for="Song.Album.LabelName">Producing Label: </label><br />
+                <input asp-for="Song.Album.LabelName" /><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col pt-4">
+                <button class="btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

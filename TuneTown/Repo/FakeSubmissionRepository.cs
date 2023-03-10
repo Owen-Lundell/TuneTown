@@ -6,12 +6,17 @@ namespace TuneTown.Repo
     {
         public IQueryable<Submission> Submissions => throw new NotImplementedException();
 
-        public Task<int> CreateSubmission(Submission model)
+        public Task<int> CreateSubmissionAsync(Submission submission)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Submission> GetSubmissionById(int submissionId)
+        public Task<int> DeleteSubmissionAsync(Submission submission)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> UpdateSubmissionAsync(Submission submission)
         {
             throw new NotImplementedException();
         }

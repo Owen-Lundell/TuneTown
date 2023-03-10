@@ -10,7 +10,7 @@ namespace TuneTown.Models
         public DateOnly ReleaseDate { get; set; }
         public Artist Artist { get; set; }
         public Album Album { get; set; }
-        public TimeSpan SongLength { get; set; }
+        public string SongLength { get; set; }
         public int BitRate { get; set;}
         public string SongLink { get; set; } //file upload will go here
     }

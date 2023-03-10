@@ -63,7 +63,7 @@ namespace TuneTown.Data
                     SongName = "You Belong With Me",
                     Artist = artist,
                     Album = album,
-                    SongLength = new DateTime(1970, 1, 1, 0, 3, 51) - new DateTime(1970, 1, 1, 0, 0, 0),
+                    SongLength = "3:55",
                     BitRate = 256,
                     SongLink = "https://open.spotify.com/track/3GCL1PydwsLodcpv0Ll1ch?si=b7d73cf096114404"
                 };

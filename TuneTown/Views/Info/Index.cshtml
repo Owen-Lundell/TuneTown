@@ -1,6 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Submission>
 @{
+    ViewData["Title"] = "Submissions";
 }
-All submissions
+@foreach (Submission submission in Model)
+{
+    <p>
+        <h4>Song Info:</h4>
+        Song Name: @submission.Song.SongName<br />
+        Release Date: @submission.Song.ReleaseDate<br />
+        Song Bit Rate: @submission.Song.BitRate<br />
+        Song Link: @submission.Song.SongLink<br />
+
+        <h4>Artist Info:</h4>
+        Artist's Public Alias: @submission.Song.Artist.PublicAlias<br />
+        Artist's First Name: @submission.Song.Artist.PublicAlias<br />
+        Artist's Last Name: @submission.Song.Artist.PublicAlias<br />
+        Affiliated Labels: @submission.Song.Artist.PublicAlias<br />
+
+        <h4>Album Info:</h4>
+        Album Title: @submission.Song.Album.AlbumName<br />
+        Group Name: @submission.Song.Album.GroupName<br />
+        Release Date: @submission.Song.Album.ReleaseDate<br />
+        Track Total: @submission.Song.Album.TrackTotal<br />
+        Producing Label: @submission.Song.Album.LabelName<br />
+
+        <h4>Meta Info:</h4>
+        Date Posted: @submission.DateSubmitted<br />
+        Your Name: @submission.User.UserName<br />
+        --------------------------------------------------------------------------------
+    </p>
+}

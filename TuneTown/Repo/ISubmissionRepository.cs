@@ -4,8 +4,9 @@ namespace TuneTown.Repo
 {
     public interface ISubmissionRepository
     {
-        public Task<Submission> GetSubmissionById(int submissionId);
         IQueryable<Submission> Submissions { get; }
-        public Task<int> CreateSubmission(Submission model);
+        public Task<int> CreateSubmissionAsync(Submission submission);
+        public Task<int> DeleteSubmissionAsync(Submission submission);
+        public Task<int> UpdateSubmissionAsync(Submission submission);
     }
 }
