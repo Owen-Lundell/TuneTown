@@ -28,11 +28,13 @@ namespace TuneTown.Data
                 #endregion
 
                 #region Submission Data
+                //fix seed song date data when i fix this
                 Artist artist = new()
                 {
                     PublicAlias = "T Swizzle",
                     FirstName = "Taylor",
                     LastName = "Swift",
+                    //get help with joining a list in a post
                     AffiliatedLabels = new List<string>()
                     {
                         "Big Machine Records",
@@ -61,6 +63,7 @@ namespace TuneTown.Data
                 Song song = new() //uses default album and artist values
                 {
                     SongName = "You Belong With Me",
+                    //ReleaseDate = DateOnly.FromDateTime(new DateTime(2008, 11, 11)),
                     Artist = artist,
                     Album = album,
                     SongLength = "3:55",

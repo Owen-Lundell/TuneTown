@@ -9,6 +9,15 @@ namespace TuneTown.Controllers
 {
     public class InfoController : Controller
     {
+        #region TODO
+        // Add submission posts to song, artist, and album pages
+        // Add relevant filters to all view controllers
+        // Implement a way to select filters without typing
+            // possible a new property in submissions? - ask brian
+        // See if i can post data from one controllers views to another controller - ask brian
+        // Add validation to make sure users cant not enter values
+        // 
+        #endregion
         ISubmissionRepository SubmissionRepository { get; set; }
         readonly UserManager<AppUser> userManager; //revert this if readonly causes issues
         public InfoController(ISubmissionRepository submissionRepository, UserManager<AppUser> userManager)
@@ -17,11 +26,11 @@ namespace TuneTown.Controllers
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(string userName, string songName)
+        public async Task<IActionResult> Index(string userName, string dateSubmitted)
         {
             //on the index i should only filter by user and upload date, things like song name and artist details should happen in ther own controllers
-            /*List<Submission> submissions;
-            if (userName != null)
+            List<Submission> submissions;
+            /*if (userName != null)
             {
                 submissions = await(
                    from s in SubmissionRepository.Submissions
@@ -29,11 +38,11 @@ namespace TuneTown.Controllers
                    select s
                    ).ToListAsync<Submission>();
             }
-            else if (songName != null)
+            else if (dateSubmitted != null)
             {
                 submissions = await (
                   from s in SubmissionRepository.Submissions
-                  where s.Song.SongName == songName
+                  where s.DateSubmitted == DateOnly.FromDateTime(DateTime.Parse(dateSubmitted))
                   select s
                   ).ToListAsync<Submission>();
             }

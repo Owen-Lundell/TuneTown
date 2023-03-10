@@ -5,28 +5,24 @@
 @foreach (Submission submission in Model)
 {
     <p>
-        <h4>Song Info:</h4>
-        Song Name: @submission.Song.SongName<br />
+        <h4>@submission.Song.SongName</h4>
         Release Date: @submission.Song.ReleaseDate<br />
         Song Bit Rate: @submission.Song.BitRate<br />
-        Song Link: @submission.Song.SongLink<br />
+        Song Link: @submission.Song.SongLink<br /><br />
 
-        <h4>Artist Info:</h4>
-        Artist's Public Alias: @submission.Song.Artist.PublicAlias<br />
-        Artist's First Name: @submission.Song.Artist.PublicAlias<br />
-        Artist's Last Name: @submission.Song.Artist.PublicAlias<br />
-        Affiliated Labels: @submission.Song.Artist.PublicAlias<br />
+        <h4>@submission.Song.Artist.PublicAlias</h4>
+        Artist's First Name: @submission.Song.Artist.FirstName<br />
+        Artist's Last Name: @submission.Song.Artist.LastName<br />
+        Affiliated Labels: @submission.Song.Artist.AffiliatedLabels<br /><br />
 
-        <h4>Album Info:</h4>
-        Album Title: @submission.Song.Album.AlbumName<br />
+        <h4>@submission.Song.Album.AlbumName</h4>
         Group Name: @submission.Song.Album.GroupName<br />
         Release Date: @submission.Song.Album.ReleaseDate<br />
         Track Total: @submission.Song.Album.TrackTotal<br />
-        Producing Label: @submission.Song.Album.LabelName<br />
+        Producing Label: @submission.Song.Album.LabelName<br /><br />
 
-        <h4>Meta Info:</h4>
+        <h4>@submission.User.UserName</h4>
         Date Posted: @submission.DateSubmitted<br />
-        Your Name: @submission.User.UserName<br />
         --------------------------------------------------------------------------------
     </p>
 }
