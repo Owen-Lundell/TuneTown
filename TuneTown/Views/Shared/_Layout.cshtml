@@ -34,9 +34,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Playback" asp-action="Index">Playback</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Info" asp-action="Submission">Submit</a>
-                        </li>
+                        @if (User.IsInRole("Poster"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Info" asp-action="Submission">Submit</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Admin</a>
+                            </li>
+                        }
                     </ul>
 
                     <!--Navbar User Stuff-->

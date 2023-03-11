@@ -11,12 +11,13 @@ namespace TuneTown.Controllers
     {
         #region TODO
         // Add submission posts to song, artist, and album pages
+        // Fix user submissions so that the id gets passed in properly - double check that this isnt because i just dropped the database
         // Add relevant filters to all view controllers
-        // Implement a way to select filters without typing
-            // possible a new property in submissions? - ask brian
-        // See if i can post data from one controllers views to another controller - ask brian
+        // Implement a way to select filters without typing (html dropdown)
+            // possibly a new property in submissions? - ask brian
         // Add validation to make sure users cant not enter values
-        // 
+        // Add comments for complex data requirement
+        // Get help with roles not applying properly
         #endregion
         ISubmissionRepository SubmissionRepository { get; set; }
         readonly UserManager<AppUser> userManager; //revert this if readonly causes issues
@@ -69,12 +70,15 @@ namespace TuneTown.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Poster")]
         public IActionResult Submission()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Poster")]
         [HttpPost]
         public async Task<IActionResult> Submission(Submission model)
         {

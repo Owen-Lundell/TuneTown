@@ -7,6 +7,7 @@ using System.Data;
 
 namespace TuneTown.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -60,7 +61,8 @@ namespace TuneTown.Controllers
             }
             return RedirectToAction("Index");
         }
-        // the Add() methods work like the Register() methods from 16-11 and 16-12
+
+        #region Role Addition
         [HttpPost]
         public async Task<IActionResult> AddToAdmin(string id)
         {
@@ -77,6 +79,26 @@ namespace TuneTown.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToPoster(string id)
+        {
+            IdentityRole posteRole = await roleManager.FindByNameAsync("Poster");
+            if (posteRole == null)
+            {
+                TempData["message"] = "Poster role does not exist. "
+                + "Click 'Create Poster Role' button to create it.";
+            }
+            else
+            {
+                AppUser user = await userManager.FindByIdAsync(id);
+                await userManager.AddToRoleAsync(user, posteRole.Name);
+            }
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Role Removal
         [HttpPost]
         public async Task<IActionResult> RemoveFromAdmin(string id)
         {
@@ -84,6 +106,16 @@ namespace TuneTown.Controllers
             await userManager.RemoveFromRoleAsync(user, "Admin");
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> RemoveFromPoster(string id)
+        {
+            AppUser user = await userManager.FindByIdAsync(id);
+            await userManager.RemoveFromRoleAsync(user, "Poster");
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Role Deletion
         [HttpPost]
         public async Task<IActionResult> DeleteRole(string id)
         {
@@ -91,12 +123,22 @@ namespace TuneTown.Controllers
             await roleManager.DeleteAsync(role);
             return RedirectToAction("Index");
         }
+        #endregion
+
+        #region Role Creation
         [HttpPost]
         public async Task<IActionResult> CreateAdminRole()
         {
             await roleManager.CreateAsync(new IdentityRole("Admin"));
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public async Task<IActionResult> CreatePosterRole()
+        {
+            await roleManager.CreateAsync(new IdentityRole("Poster"));
+            return RedirectToAction("Index");
+        }
+        #endregion
 
         [HttpGet]
         public IActionResult Add()
