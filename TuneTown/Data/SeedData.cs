@@ -16,14 +16,29 @@ namespace TuneTown.Data
             {
                 #region User Data
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
-                //default users, use user secret to hide password later
-                //result variable can just be removed, is used only as a success/fail savestate
                 const string TEST_PASSWORD = "password";
-                AppUser testUser1 = new() { UserName = "Bill Clinton" };
+                const string ADMIN_ROLE = "Admin";
+                const string POSTER_ROLE = "Poster";
+
+                AppUser testUser1 = new() 
+                    {
+                        UserName = "Bill Clinton", 
+                        RoleNames = new[] { ADMIN_ROLE, POSTER_ROLE }
+                    };
                 var result = userManager.CreateAsync(testUser1, TEST_PASSWORD).Result;
-                AppUser testUser2 = new() { UserName = "David Lundell" };
+                
+                AppUser testUser2 = new() 
+                    { 
+                        UserName = "David Lundell", 
+                        RoleNames = new[] { POSTER_ROLE }
+                    };
                 result = userManager.CreateAsync(testUser2, TEST_PASSWORD).Result;
-                AppUser testUser3 = new() { UserName = "Static User" };
+                
+                AppUser testUser3 = new() 
+                    { 
+                        UserName = "Static User" ,
+                        RoleNames = new[] { POSTER_ROLE }
+                    };
                 result = userManager.CreateAsync(testUser3, TEST_PASSWORD).Result;
                 #endregion
 
@@ -50,10 +65,11 @@ namespace TuneTown.Data
                 context.Albums.Add(album);
                 context.SaveChanges();
 
-                Song song = new() //uses default album and artist values
+                //uses default album and artist values
+                Song song = new() 
                 {
                     SongName = "You Belong With Me",
-                    //ReleaseDate = DateOnly.FromDateTime(new DateTime(2008, 11, 11)),
+                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2008, 11, 11)),
                     Artist = artist,
                     Album = album,
                     SongLength = "3:55",
@@ -81,7 +97,6 @@ namespace TuneTown.Data
                     DateSubmitted = DateOnly.Parse("11/27/2022")
                 };
                 context.Submissions.Add(submission);
-
                 context.SaveChanges();
 
                 //two submissions with default user values and unique song, artist, and album values
