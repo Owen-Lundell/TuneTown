@@ -1,5 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Submission>
 @{
+    ViewData["Title"] = "Songs";
+}
+
+<!--Filters-->
+<h4>Enter a release date:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="ReleaseDate" class="control-label col-md-2">Release Date: </label>
+        <input type="date" name="ReleaseDate" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Songs" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<h4>Enter a minimum bitrate:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="BitRate" class="control-label col-md-2">Bit Rate: </label>
+        <input type="number" name="BitRate" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Songs" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<!--Submissions-->
+<!--See if theres a way to select this by distinct songname and artistname-->
+@foreach (Submission submission in Model.DistinctBy(submission => submission.Song.SongName))
+{
+    <p>
+        <h4>@submission.Song.SongName</h4>
+        Release Date: @submission.Song.ReleaseDate<br />
+        Bit Rate (kbs): @submission.Song.BitRate<br />
+        Song Link: @submission.Song.SongLink<br /><br />
+
+        Posted by <b>@submission.User.UserName</b> on @submission.DateSubmitted<br />
+        --------------------------------------------------------------------------------
+    </p>
 }

@@ -2,12 +2,39 @@
 @{
     ViewData["Title"] = "Submissions";
 }
+
+<!--Filters-->
+<h4>Enter a poster's name:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="UserName" class="control-label col-md-2">Poster's Name: </label>
+        <input name="UserName" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Index" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<h4>Enter a submission date:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="DateSubmitted" class="control-label col-md-2">Date Submitted: </label>
+        <input type="date" name="DateSubmitted" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Index" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<!--Submissions-->
 @foreach (Submission submission in Model)
 {
     <p>
         <h4>@submission.Song.SongName</h4>
         Release Date: @submission.Song.ReleaseDate<br />
-        Song Bit Rate: @submission.Song.BitRate<br />
+        Bit Rate(kbs): @submission.Song.BitRate<br />
         Song Link: @submission.Song.SongLink<br /><br />
 
         <h4>@submission.Song.Artist.PublicAlias</h4>
@@ -21,8 +48,7 @@
         Track Total: @submission.Song.Album.TrackTotal<br />
         Producing Label: @submission.Song.Album.LabelName<br /><br />
 
-        <h4>@submission.User.UserName</h4>
-        Date Posted: @submission.DateSubmitted<br />
+        Posted by <b>@submission.User.UserName</b> on @submission.DateSubmitted<br />
         --------------------------------------------------------------------------------
     </p>
 }

@@ -1,5 +1,68 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Submission>
 @{
+    ViewData["Title"] = "Albums";
+}
+
+<!--Filters-->
+<h4>Enter a group name:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="GroupName" class="control-label col-md-2">Group's Name: </label>
+        <input name="GroupName" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Albums" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<h4>Enter a release date:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="ReleaseDate" class="control-label col-md-2">Release Date: </label>
+        <input type="date" name="DateSubmitted" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Albums" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<h4>Enter a track total:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="TrackTotal" class="control-label col-md-2">Track Total: </label>
+        <input type="number" name="TrackTotal" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Albums" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<h4>Enter a label name:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="LabelName" class="control-label col-md-2">Label Name: </label>
+        <input name="LabelName" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Albums" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<!--Submissions-->
+@foreach (Submission submission in Model.DistinctBy(submission => submission.Song.Album.AlbumName))
+{
+    <p>
+        <h4>@submission.Song.Album.AlbumName</h4>
+        Group Name: @submission.Song.Album.GroupName<br />
+        Release Date: @submission.Song.Album.ReleaseDate<br />
+        Track Total: @submission.Song.Album.TrackTotal<br />
+        Producing Label: @submission.Song.Album.LabelName<br /><br />
+
+        Posted by <b>@submission.User.UserName</b> on @submission.DateSubmitted<br />
+        --------------------------------------------------------------------------------
+    </p>
 }

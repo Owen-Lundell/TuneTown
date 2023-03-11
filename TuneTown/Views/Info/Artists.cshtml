@@ -1,5 +1,55 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Submission>
 @{
+    ViewData["Title"] = "Artists";
+}
+
+<!--Filters-->
+<h4>Enter an artist's first name:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="FirstName" class="control-label col-md-2">First Name: </label>
+        <input name="FirstName" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Artists" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<h4>Enter an artist's last name:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="LastName" class="control-label col-md-2">Last Name: </label>
+        <input name="LastName" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Artists" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<h4>Enter a label's name:</h4>
+<form method="post" class="container">
+    <div class="row">
+        <label for="LabelName" class="control-label col-md-2">Label Name: </label>
+        <input name="LabelName" class="form-control col-sm-6" />
+    </div>
+    <div class="row">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+        <a asp-action="Artists" class="btn btn-secondary col-3">Reset</a>
+    </div>
+</form>
+
+<!--Submissions-->
+@foreach (Submission submission in Model.DistinctBy(submission => submission.Song.Artist.PublicAlias))
+{
+    <p>
+        <h4>@submission.Song.Artist.PublicAlias</h4>
+        Artist's First Name: @submission.Song.Artist.FirstName<br />
+        Artist's Last Name: @submission.Song.Artist.LastName<br />
+        Affiliated Labels: @submission.Song.Artist.AffiliatedLabels<br /><br />
+
+        Posted by <b>@submission.User.UserName</b> on @submission.DateSubmitted<br />
+        --------------------------------------------------------------------------------
+    </p>
 }
