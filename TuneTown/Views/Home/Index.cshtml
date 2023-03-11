@@ -1,8 +1,26 @@
-﻿@{
+﻿@model List<Submission>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Tune Town</h1>
+    <p>This is a site about sharing music. Please register an account and if I know you I will approve it for access to post songs.</p>
 </div>
+<h3>See what people are posting!</h3>
+@{
+    //should post the most recent three submissions
+    List<Submission> submission = Model;
+    for (int i = submission.Count - 1; i > submission.Count - 4; i--)
+    {
+        <p>
+            <h4>Posted By: @submission[i].User.UserName</h4>
+            Song Name: @submission[i].Song.SongName<br />
+            Release Date: @submission[i].Song.ReleaseDate<br />
+            Album Name: @submission[i].Song.Album.AlbumName<br />
+            Song Link: @submission[i].Song.SongLink<br /><br />
+            Date Posted: @submission[i].DateSubmitted<br />
+            --------------------------------------------------------------------------------
+        </p>
+    }
+}

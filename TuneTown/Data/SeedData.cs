@@ -28,22 +28,12 @@ namespace TuneTown.Data
                 #endregion
 
                 #region Submission Data
-                //fix seed song date data when i fix this
                 Artist artist = new()
                 {
                     PublicAlias = "T Swizzle",
                     FirstName = "Taylor",
                     LastName = "Swift",
-                    //get help with joining a list in a post
-                    AffiliatedLabels = new List<string>()
-                    {
-                        "Big Machine Records",
-                        "Universal Music Group",
-                        "Republic Records",
-                        "RCA Records",
-                        "Mercury Records",
-                        "Virgin EMI Records"
-                    }
+                    AffiliatedLabels = "Big Machine Records, Universal Music Group, Republic Records, RCA Records, Mercury Records, Virgin EMI Records"
                 };
                 context.Artists.Add(artist);
                 context.SaveChanges();
