@@ -26,23 +26,24 @@ namespace TuneTown.Repo
             }
         }
 
-        public async Task<int> CreateSubmissionAsync(Submission submission)
+        public async Task CreateSubmissionAsync(Submission submission)
         {
             submission.DateSubmitted = DateOnly.FromDateTime(DateTime.Now);
             context.Submissions.Add(submission);
-            return await context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
-        public async Task<int> DeleteSubmissionAsync(Submission submission)
+        public async Task DeleteSubmissionAsync(Submission submission)
         {
-            context.Submissions.Remove(submission);
-            return await context.SaveChangesAsync();
+            var submissionForDeletion = await context.Submissions.FindAsync(submission.SubmissionId);
+            context.Submissions.Remove(submissionForDeletion);
+            await context.SaveChangesAsync();
         }
 
-        public async Task<int> UpdateSubmissionAsync(Submission submission)
+        public async Task UpdateSubmissionAsync(Submission submission)
         {
             context.Submissions.Update(submission);
-            return await context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -10,19 +10,22 @@ namespace TuneTown.Controllers
     public class InfoController : Controller
     {
         #region TODO
+        // Add unit tests
         // Add validation to make sure users cant not enter values
             // Some validation is there i'm just not certain if its working as it should
         // Add comments for complex data requirement
         // Get help with roles not applying properly
         // Get help with making the songs page take two parameters for its distinct method
         // Get help troubleshooting nonfunctional filters
-            // Implement a way to select filters without typing (html dropdown)
-                // possibly a new property in submissions? - ask brian
+        // Implement a way to select filters from one box (html dropdown)
+            // possibly a new property in submissions? - ask brian
         // Implement actual file submissions
             // Put those submissions on the home page and playback page
             // Show the filenames for those submissions on the info pages
         // Style the page
         #endregion
+
+        #region Initialization
         ISubmissionRepository SubmissionRepository { get; set; }
         readonly UserManager<AppUser> userManager; //revert this if readonly causes issues
         public InfoController(ISubmissionRepository submissionRepository, UserManager<AppUser> userManager)
@@ -30,6 +33,7 @@ namespace TuneTown.Controllers
             SubmissionRepository = submissionRepository;
             this.userManager = userManager;
         }
+        #endregion
 
         #region Info Views and Filter Methods
         public async Task<IActionResult> Index(string userName, string dateSubmitted)
