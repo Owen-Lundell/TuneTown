@@ -26,11 +26,12 @@ namespace TuneTown.Repo
             }
         }
 
-        public async Task CreateSubmissionAsync(Submission submission)
+        public async Task<int> CreateSubmissionAsync(Submission submission)
         {
             submission.DateSubmitted = DateOnly.FromDateTime(DateTime.Now);
             context.Submissions.Add(submission);
-            await context.SaveChangesAsync();
+            return await context.SaveChangesAsync();
+            // add some return type to indicate success
         }
 
         public async Task DeleteSubmissionAsync(Submission submission)

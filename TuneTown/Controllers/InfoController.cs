@@ -15,8 +15,7 @@ namespace TuneTown.Controllers
             // Some validation is there i'm just not certain if its working as it should
         // Add comments for complex data requirement
         // Get help with roles not applying properly
-        // Get help with making the songs page take two parameters for its distinct method
-        // Get help troubleshooting nonfunctional filters
+        // Get help with making the songs page take two parameters for its distinct method in the view (songname and artist)
         // Implement a way to select filters from one box (html dropdown)
             // possibly a new property in submissions? - ask brian
         // Implement actual file submissions
@@ -36,6 +35,7 @@ namespace TuneTown.Controllers
         #endregion
 
         #region Info Views and Filter Methods
+        #region Index (Info)
         public async Task<IActionResult> Index(string userName, string dateSubmitted)
         {
             List<Submission> submissions;
@@ -62,16 +62,25 @@ namespace TuneTown.Controllers
 
             return View(submissions);
         }
+        #endregion
 
-        public async Task<IActionResult> Albums(string albumName, string releaseDate, int trackTotal, string labelName)
+        #region Albums
+        public async Task<IActionResult> Albums(string albumName, string groupName, string releaseDate, int trackTotal, string labelName)
         {
             List<Submission> submissions;
-            //album name and release date filters not working - unsure why as i copy pasted all of this
             if (albumName != null)
             {
                 submissions = await (
                    from s in SubmissionRepository.Submissions
                    where s.Song.Album.AlbumName == albumName
+                   select s
+                   ).ToListAsync<Submission>();
+            }
+            else if (groupName != null)
+            {
+                submissions = await (
+                   from s in SubmissionRepository.Submissions
+                   where s.Song.Album.GroupName == groupName
                    select s
                    ).ToListAsync<Submission>();
             }
@@ -106,11 +115,22 @@ namespace TuneTown.Controllers
 
             return View(submissions);
         }
+        #endregion
 
-        public async Task<IActionResult> Artists(string firstName, string lastName, string affiliatedLabel)
+        #region Artists
+        //not getting data for some reason
+        public async Task<IActionResult> Artists(string publicAlias, string firstName, string lastName, string affiliatedLabel)
         {
             List<Submission> submissions;
-            if (firstName != null)
+            if (publicAlias != null)
+            {
+                submissions = await (
+                   from s in SubmissionRepository.Submissions
+                   where s.Song.Artist.PublicAlias == publicAlias
+                   select s
+                   ).ToListAsync<Submission>();
+            }
+            else if (firstName != null)
             {
                 submissions = await (
                    from s in SubmissionRepository.Submissions
@@ -126,7 +146,6 @@ namespace TuneTown.Controllers
                    select s
                    ).ToListAsync<Submission>();
             }
-            //affiliated label filter not working
             else if (affiliatedLabel != "")
             {
                 submissions = await (
@@ -142,7 +161,9 @@ namespace TuneTown.Controllers
 
             return View(submissions);
         }
+        #endregion
 
+        #region Songs
         public async Task<IActionResult> Songs(string releaseDate, int bitRate)
         {
             List<Submission> submissions;
@@ -154,7 +175,6 @@ namespace TuneTown.Controllers
                   select s
                   ).ToListAsync<Submission>();
             }
-            //bitrate filter does not work without direct equivalency
             else if (bitRate > 0)
             {
                 submissions = await (
@@ -171,6 +191,7 @@ namespace TuneTown.Controllers
             return View(submissions);
         }
         #endregion
+        #endregion
 
         #region Submission View and Post Methods
         [Authorize(Roles = "Admin")]
@@ -186,7 +207,7 @@ namespace TuneTown.Controllers
         public async Task<IActionResult> Submission(Submission model)
         {
             model.User = await userManager.GetUserAsync(User);
-            if (await SubmissionRepository.CreateSubmissionAsync(model) > 0)
+            if (SubmissionRepository.CreateSubmissionAsync(model).Result > 0)
             {
                 return RedirectToAction("Index", new { submissionId = model.SubmissionId });
             }

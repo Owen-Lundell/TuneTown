@@ -31,8 +31,8 @@
 <h4>Enter a label's name:</h4>
 <form method="post" class="container">
     <div class="row">
-        <label for="LabelName" class="control-label col-md-2">Label Name: </label>
-        <input name="LabelName" class="form-control col-sm-6" />
+        <label for="AffiliatedLabel" class="control-label col-md-2">Label Name: </label>
+        <input name="AffiliatedLabel" class="form-control col-sm-6" />
     </div>
     <div class="row">
         <button type="submit" class="form-control btn btn-success col-2">Submit</button>
@@ -41,7 +41,7 @@
 </form>
 
 <!--Submissions-->
-@foreach (Submission submission in Model.DistinctBy(submission => submission.Song.Artist.PublicAlias))
+@foreach (Submission submission in Model) //.DistinctBy(submission => submission.Song.Artist.PublicAlias))
 {
     <p>
         <h4>@submission.Song.Artist.PublicAlias</h4>

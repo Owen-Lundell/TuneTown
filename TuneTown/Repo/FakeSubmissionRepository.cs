@@ -4,7 +4,7 @@ namespace TuneTown.Repo
 {
     public class FakeSubmissionRepository : ISubmissionRepository
     {
-        List<Submission> submissions = new List<Submission>();
+        readonly List<Submission> submissions = new();
 
         public IQueryable<Submission> Submissions
         {
@@ -12,10 +12,11 @@ namespace TuneTown.Repo
         }
 
 #pragma warning disable CS1998
-        public async Task CreateSubmissionAsync(Submission submission)
+        public async Task<int> CreateSubmissionAsync(Submission submission)
         {
             submission.SubmissionId = submissions.Count;
             submissions.Add(submission);
+            return 1; //temporary
         }
 
 
