@@ -22,5 +22,7 @@ namespace TuneTown.Models
 
         [Required(ErrorMessage = "A file upload is required.")]
         public string SongLink { get; set; } //file upload will go here
+
+        //comment
     }
 }

@@ -13,11 +13,18 @@ namespace TuneTown.Data
             RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             string username = "admin";
             string password = "sesame";
-            string roleName = "Admin";
+            string adminRole = "Admin";
+            string posterRole = "Poster";
+            //add poster role
+
             // if role doesn't exist, create it
-            if (await roleManager.FindByNameAsync(roleName) == null)
+            if (await roleManager.FindByNameAsync(adminRole) == null)
             {
-                await roleManager.CreateAsync(new IdentityRole(roleName));
+                await roleManager.CreateAsync(new IdentityRole(adminRole));
+            }
+            if (await roleManager.FindByNameAsync(posterRole) == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole(posterRole));
             }
             // if username doesn't exist, create it and add it to role
             if (await userManager.FindByNameAsync(username) == null)
@@ -26,7 +33,7 @@ namespace TuneTown.Data
                 var result = await userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, roleName);
+                    await userManager.AddToRoleAsync(user, adminRole);
                 }
             }
         }

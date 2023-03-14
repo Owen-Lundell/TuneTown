@@ -67,7 +67,7 @@
 </table>
 
 <h1 class="mb-2">Manage Roles</h1>
-@if (Model.Roles.Count() == 0)
+@if (Model.Roles.Count() < 2)
 {
     <form method="post" asp-action="CreateAdminRole">
         <button type="submit" class="btn btn-primary">

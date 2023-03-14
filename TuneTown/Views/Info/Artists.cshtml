@@ -41,7 +41,7 @@
 </form>
 
 <!--Submissions-->
-@foreach (Submission submission in Model) //.DistinctBy(submission => submission.Song.Artist.PublicAlias))
+@foreach (Submission submission in Model.DistinctBy(submission => submission.Song.Artist.PublicAlias))
 {
     <p>
         <h4>@submission.Song.Artist.PublicAlias</h4>

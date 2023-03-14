@@ -15,7 +15,7 @@ namespace TuneTown.Controllers
         // Add validation to make sure users cant not enter values
             // Some validation is there i'm just not certain if its working as it should
         // Add comments for complex data requirement
-        // Get help with roles not applying properly
+        // Add video embeds for rich media requirement
 
         //Optional
         // Get help with making the songs page take two parameters for its distinct method in the view (songname and artist)
@@ -149,7 +149,7 @@ namespace TuneTown.Controllers
                    select s
                    ).ToListAsync<Submission>();
             }
-            else if (affiliatedLabel != "")
+            else if (affiliatedLabel != null)
             {
                 submissions = await (
                    from s in SubmissionRepository.Submissions
@@ -197,15 +197,13 @@ namespace TuneTown.Controllers
         #endregion
 
         #region Submission View and Post Methods
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "Poster")]
+        [Authorize(Roles = "Admin,Poster")]
         public IActionResult Submission()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "Poster")]
+        [Authorize(Roles = "Admin,Poster")]
         [HttpPost]
         public async Task<IActionResult> Submission(Submission model)
         {
