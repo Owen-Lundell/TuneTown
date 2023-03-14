@@ -10,11 +10,14 @@ namespace TuneTown.Controllers
     public class InfoController : Controller
     {
         #region TODO
+        //Required
         // Add unit tests
         // Add validation to make sure users cant not enter values
             // Some validation is there i'm just not certain if its working as it should
         // Add comments for complex data requirement
         // Get help with roles not applying properly
+
+        //Optional
         // Get help with making the songs page take two parameters for its distinct method in the view (songname and artist)
         // Implement a way to select filters from one box (html dropdown)
             // possibly a new property in submissions? - ask brian
