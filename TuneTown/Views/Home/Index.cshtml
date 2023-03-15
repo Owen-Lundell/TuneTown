@@ -2,25 +2,50 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
 
+<body>
 <div class="text-center">
     <h1 class="display-4">Welcome to Tune Town</h1>
     <p>This is a site about sharing music. Please register an account and if I know you I will approve it for access to post songs.</p>
 </div>
 <h3>See what people are posting!</h3>
-@{
-    //should post the most recent three submissions
-    List<Submission> submission = Model;
-    for (int i = submission.Count - 1; i > submission.Count - 4; i--)
-    {
-        <p>
+    @{
+        //should post the most recent three submissions
+        List<Submission> submission = Model;
+        for (int i = submission.Count - 1; i > submission.Count - 4; i--)
+        {
+            <p>
             <h4>Posted By: @submission[i].User.UserName</h4>
             Song Name: @submission[i].Song.SongName<br />
             Release Date: @submission[i].Song.ReleaseDate<br />
             Album Name: @submission[i].Song.Album.AlbumName<br />
-            Song Link: @submission[i].Song.SongLink<br /><br />
+            
+            /*Youtube generated link*/
+            <iframe width="560" height="315" 
+                src="https://www.youtube.com/embed/uD8d1KrDQcY" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+
+            /*Get custom link*/
+            <iframe width="560" height="315"
+                    src=@("https://www.youtube.com/embed/" + @submission[i].Song.SongLink.Substring(@submission[i].Song.SongLink.Length - 11))
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+            </iframe>
+            <br /><br />
             Date Posted: @submission[i].DateSubmitted<br />
             --------------------------------------------------------------------------------
         </p>
     }
 }
+</body>

@@ -78,7 +78,7 @@ namespace TuneTown.Data
                     Album = album,
                     SongLength = "3:55",
                     BitRate = 256,
-                    SongLink = "https://open.spotify.com/track/3GCL1PydwsLodcpv0Ll1ch?si=b7d73cf096114404"
+                    SongLink = "https://www.youtube.com/watch?v=uD8d1KrDQcY"
                 };
                 context.Songs.Add(song);
                 context.SaveChanges();
