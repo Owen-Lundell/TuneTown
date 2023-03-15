@@ -7,15 +7,19 @@
 {
     <!--Song Info-->
     <p>
-        <iframe width="420" height="315"
-                src="@submission.Song.SongLink">
+        <iframe width="560" height="315"
+                src=@("https://www.youtube.com/embed/" + @submission.Song.SongLink.Substring(@submission.Song.SongLink.Length - 11))
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
         </iframe><br />
         Artist: @submission.Song.Artist.PublicAlias<br />
         Album: @submission.Song.Album.AlbumName<br />
         ---------------------------------------------------------
     </p>
     <!--Comments-->
-    <a asp-action="Comment" asp-route-storyId="@submission.Song.SongId" class="btn-sm btn-secondary col-3 m-3">Add Comment</a>
+    <a asp-action="Comment" asp-route-songId="@submission.Song.SongId" class="btn-sm btn-secondary col-3 m-3">Add Comment</a>
     if (@submission.Song.Comments.Count != 0)
     {
         <h5 class="m-3">Comment@(@submission.Song.Comments.Count > 1 ? "s" : "")</h5>

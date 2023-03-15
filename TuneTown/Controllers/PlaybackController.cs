@@ -23,11 +23,13 @@ namespace TuneTown.Controllers
         #region View
         public async Task<IActionResult> Index()
         {
+            //add the if else just in case this is ever null
             return View(await SubmissionRepository.Submissions.ToListAsync<Submission>());
         }
         #endregion
 
         #region Comments
+        // The issue I'm having is that the songid is getting set to 0 and im unsure how the value is getting passed into it
         [Authorize]
         public IActionResult Comment(int songId)
         {
@@ -42,9 +44,12 @@ namespace TuneTown.Controllers
             comment.Commenter = userManager.GetUserAsync(User).Result;
             comment.PostDate = DateTime.Now;
 
-            var submission = (from s in SubmissionRepository.Submissions
+            /*var submission = (from s in SubmissionRepository.Submissions
                                 .Include(s => s.Song.Comments)
                                 .ThenInclude(c => c.Commenter)
+                              where s.Song.SongId == commentVM.SongId
+                              select s).First<Submission>();*/
+            var submission = (from s in SubmissionRepository.Submissions
                               where s.Song.SongId == commentVM.SongId
                               select s).First<Submission>();
 
@@ -52,7 +57,6 @@ namespace TuneTown.Controllers
             await SubmissionRepository.UpdateSubmissionAsync(submission);
 
             return RedirectToAction("Index");
-            // might need to return values like  return RedirectToAction("Stories", new { storyTitle = submission.Story.StoryTitle, userName = submission.User.UserName });
         }
         #endregion
     }

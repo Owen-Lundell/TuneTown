@@ -12,9 +12,6 @@ namespace TuneTown.Controllers
         #region TODO
         //Required
         // Add unit tests
-        // Fix comments not submitting properly
-            // Double check that submission info is getting input properly
-        // Add video embeds for rich media requirement
         // Do load testing
 
         //Optional

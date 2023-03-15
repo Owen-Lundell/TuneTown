@@ -24,17 +24,6 @@
             Song Name: @submission[i].Song.SongName<br />
             Release Date: @submission[i].Song.ReleaseDate<br />
             Album Name: @submission[i].Song.Album.AlbumName<br />
-            
-            /*Youtube generated link*/
-            <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/uD8d1KrDQcY" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-
-            /*Get custom link*/
             <iframe width="560" height="315"
                     src=@("https://www.youtube.com/embed/" + @submission[i].Song.SongLink.Substring(@submission[i].Song.SongLink.Length - 11))
                     title="YouTube video player"
