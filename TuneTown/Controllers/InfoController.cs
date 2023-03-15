@@ -12,11 +12,10 @@ namespace TuneTown.Controllers
         #region TODO
         //Required
         // Add unit tests
-        // Add validation to make sure users cant not enter values
-            // Some validation is there i'm just not certain if its working as it should
         // Fix comments not submitting properly
             // Double check that submission info is getting input properly
         // Add video embeds for rich media requirement
+        // Do load testing
 
         //Optional
         // Get help with making the songs page take two parameters for its distinct method in the view (songname and artist)

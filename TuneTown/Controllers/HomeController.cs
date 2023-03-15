@@ -17,7 +17,11 @@ namespace TuneTown.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await SubmissionRepository.Submissions.ToListAsync<Submission>());
+            if (SubmissionRepository != null)
+            {
+                return View(await SubmissionRepository.Submissions.ToListAsync<Submission>());
+            }
+            else { return View(); }
         }
 
         public IActionResult Privacy()
