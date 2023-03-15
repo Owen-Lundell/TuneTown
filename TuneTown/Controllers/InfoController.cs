@@ -14,7 +14,8 @@ namespace TuneTown.Controllers
         // Add unit tests
         // Add validation to make sure users cant not enter values
             // Some validation is there i'm just not certain if its working as it should
-        // Add comments for complex data requirement
+        // Fix comments not submitting properly
+            // Double check that submission info is getting input properly
         // Add video embeds for rich media requirement
 
         //Optional
@@ -121,7 +122,6 @@ namespace TuneTown.Controllers
         #endregion
 
         #region Artists
-        //not getting data for some reason
         public async Task<IActionResult> Artists(string publicAlias, string firstName, string lastName, string affiliatedLabel)
         {
             List<Submission> submissions;

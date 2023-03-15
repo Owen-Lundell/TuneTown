@@ -22,7 +22,8 @@ namespace TuneTown.Repo
                     .Include(submission => submission.User)
                     .Include(submission => submission.Song)
                     .Include(submission => submission.Song).ThenInclude(song => song.Album)
-                    .Include(submission => submission.Song).ThenInclude(song => song.Artist);
+                    .Include(submission => submission.Song).ThenInclude(song => song.Artist)
+                    .Include(Submission => Submission.Song).ThenInclude(song => song.Comments).ThenInclude(comments => comments.Commenter);
             }
         }
 

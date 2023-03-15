@@ -6,5 +6,6 @@
         public string CommentText { get; set; }
         public DateTime PostDate { get; set; }
         public AppUser Commenter { get; set; }
+        public int SongId { get; set; }
     }
 }

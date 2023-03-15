@@ -15,7 +15,6 @@ namespace TuneTown.Data
             string password = "sesame";
             string adminRole = "Admin";
             string posterRole = "Poster";
-            //add poster role
 
             // if role doesn't exist, create it
             if (await roleManager.FindByNameAsync(adminRole) == null)

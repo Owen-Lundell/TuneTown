@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Update;
 using TuneTown.Models;
@@ -14,12 +15,15 @@ namespace TuneTown.Data
         {
             if (!context.Submissions.Any())
             {
-                #region User Data
+                #region Initialization
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
                 const string TEST_PASSWORD = "password";
                 const string ADMIN_ROLE = "Admin";
                 const string POSTER_ROLE = "Poster";
+                List<Comment> comments = new List<Comment>();
+                #endregion
 
+                #region User Data
                 AppUser testUser1 = new() 
                     {
                         UserName = "Bill Clinton", 
@@ -116,6 +120,29 @@ namespace TuneTown.Data
                     DateSubmitted = DateOnly.Parse("11/27/2022")
                 };
                 context.Submissions.Add(submission);
+                context.SaveChanges();
+                #endregion
+
+                #region Comments
+                Comment comment = new Comment
+                {
+                    Commenter = testUser1,
+                    CommentText = "This is a comment",
+                    PostDate = DateTime.Now,
+                    SongId = 1
+                };
+                context.Add(comment);
+                comments.Add(comment);
+
+                comment = new Comment
+                {
+                    Commenter = testUser2,
+                    CommentText = "This is another comment",
+                    PostDate = DateTime.Now,
+                    SongId = 1
+                };
+                context.Add(comment);
+                comments.Add(comment);
                 context.SaveChanges();
                 #endregion
             }

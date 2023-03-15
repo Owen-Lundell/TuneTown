@@ -1,0 +1,23 @@
+﻿@model CommentVM
+@{
+    ViewData["Title"] = "Comment";
+}
+<h1>Comment on a Song</h1>
+<strong>Enter your Comment</strong>
+<br />
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<form method="post" class="container">
+    <div class="row p-2">
+        <input hidden asp-for="SongId" />
+        <label asp-for="CommentText" class="control-label  col-md-1">Comment</label><br />
+        <textarea asp-for="CommentText" placeholder="Post your comment here" class="form-control col-md-6"></textarea>
+        <span asp-validation-for="CommentText" class="text-danger"></span>
+    </div>
+    <div class="row p-2">
+        <button type="submit" class="form-control btn btn-success col-2">Submit</button>
+    </div>
+</form>
+
+<br />
+<hr />
