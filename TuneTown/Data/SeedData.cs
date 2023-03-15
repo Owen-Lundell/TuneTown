@@ -27,36 +27,36 @@ namespace TuneTown.Data
                 AppUser testUser1 = new() 
                     {
                         UserName = "Bill Clinton", 
-                        RoleNames = new[] { ADMIN_ROLE, POSTER_ROLE }
+                        RoleNames = new[] { POSTER_ROLE }
                     };
                 var result = userManager.CreateAsync(testUser1, TEST_PASSWORD).Result;
                 
                 AppUser testUser2 = new() 
                     { 
-                        UserName = "David Lundell", 
+                        UserName = "Barack Obama", 
                         RoleNames = new[] { POSTER_ROLE }
                     };
                 result = userManager.CreateAsync(testUser2, TEST_PASSWORD).Result;
                 
                 AppUser testUser3 = new() 
                     { 
-                        UserName = "Static User" ,
-                        RoleNames = new[] { POSTER_ROLE }
+                        UserName = "Owen Lundell" ,
+                        RoleNames = new[] { ADMIN_ROLE, POSTER_ROLE }
                     };
                 result = userManager.CreateAsync(testUser3, TEST_PASSWORD).Result;
                 #endregion
 
                 #region Submission Data
+                #region Taylor Swift
                 Artist artist = new()
                 {
-                    PublicAlias = "T Swizzle",
+                    PublicAlias = "Taylor Swft",
                     FirstName = "Taylor",
                     LastName = "Swift",
                     AffiliatedLabels = "Big Machine Records, Universal Music Group, Republic Records, RCA Records, Mercury Records, Virgin EMI Records"
                 };
                 context.Artists.Add(artist);
                 context.SaveChanges();
-
 
                 Album album = new()
                 {
@@ -84,13 +84,122 @@ namespace TuneTown.Data
                 context.SaveChanges();
                 #endregion
 
+                #region Delta Sleep
+                Artist deltaSleep = new()
+                {
+                    PublicAlias = "Devin Yüceil",
+                    FirstName = "Devin",
+                    LastName = "Yüceil",
+                    AffiliatedLabels = "Sofa Boy Records, Big Scary Monsters Recording Company"
+                };
+                context.Artists.Add(deltaSleep);
+                context.SaveChanges();
+
+                Album twinGalaxies = new()
+                {
+                    AlbumName = "Twin Galaxies",
+                    GroupName = "Delta Sleep",
+                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2015, 06, 08)),
+                    TrackTotal = 11,
+                    LabelName = "Big Scary Monsters Recording Company",
+                };
+                context.Albums.Add(twinGalaxies);
+                context.SaveChanges();
+
+                Song strongthany = new()
+                {
+                    SongName = "Strongthany",
+                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2015, 06, 08)),
+                    Artist = deltaSleep,
+                    Album = twinGalaxies,
+                    SongLength = "5:12",
+                    BitRate = 320,
+                    SongLink = "https://www.youtube.com/watch?v=kZqQajj1oec"
+                };
+                context.Songs.Add(strongthany);
+                context.SaveChanges();
+                #endregion
+
+                #region Nekomata Master
+                Artist nekomataMaster = new()
+                {
+                    PublicAlias = "Nekomata Master",
+                    FirstName = "Naoyuki",
+                    LastName = "Sato",
+                    AffiliatedLabels = "Konami"
+                };
+                context.Artists.Add(nekomataMaster);
+                context.SaveChanges();
+
+                Album backdrops = new()
+                {
+                    AlbumName = "Backdrops",
+                    GroupName = "Nekomata Master",
+                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2009, 09, 25)),
+                    TrackTotal = 15,
+                    LabelName = "Konami",
+                };
+                context.Albums.Add(backdrops);
+                context.SaveChanges();
+
+                Song goodbyeChalon = new()
+                {
+                    SongName = "Good-bye Chalon",
+                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2010, 11, 21)),
+                    Artist =  nekomataMaster,
+                    Album = backdrops,
+                    SongLength = "5:12",
+                    BitRate = 320,
+                    SongLink = "https://youtu.be/ZQQ_4lnab1c"
+                };
+                context.Songs.Add(goodbyeChalon);
+                context.SaveChanges();
+                #endregion
+
+                #region goreshit
+                Artist goreshit = new()
+                {
+                    PublicAlias = "goreshit",
+                    FirstName = "Leon",
+                    LastName = "Makepeace",
+                    AffiliatedLabels = "Kitty on Fire Records"
+                };
+                context.Artists.Add(goreshit);
+                context.SaveChanges();
+
+                Album rituals = new()
+                {
+                    AlbumName = "Rituals",
+                    GroupName = "goreshit",
+                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2013, 10, 2)),
+                    TrackTotal = 15,
+                    LabelName = "Kitty on Fire Records",
+                };
+                context.Albums.Add(rituals);
+                context.SaveChanges();
+
+                Song fleshbound = new()
+                {
+                    SongName = "Fleshbound",
+                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2013, 10, 2)),
+                    Artist = goreshit,
+                    Album = rituals,
+                    SongLength = "6:16",
+                    BitRate = 196,
+                    SongLink = "https://www.youtube.com/watch?v=siCf8EW3_MA"
+                };
+                context.Songs.Add(fleshbound);
+                context.SaveChanges();
+                #endregion
+                #endregion
+
                 #region Submissions
                 //two submissions with default song, artist, and album values
                 Submission submission = new()
                 {
                     User = testUser1,
                     Song = song,
-                    DateSubmitted = DateOnly.Parse("11/27/2022")
+                    DateSubmitted = DateOnly.Parse("3/15/2023")
                 };
                 context.Submissions.Add(submission);
 
@@ -98,26 +207,33 @@ namespace TuneTown.Data
                 {
                     User = testUser2,
                     Song = song,
-                    DateSubmitted = DateOnly.Parse("11/27/2022")
+                    DateSubmitted = DateOnly.Parse("3/15/2023")
                 };
                 context.Submissions.Add(submission);
                 context.SaveChanges();
 
-                //two submissions with default user values and unique song, artist, and album values
-                //TODO: add unique song, artist, and album values
+                //submissions with different values
                 submission = new Submission
                 {
                     User = testUser3,
-                    Song = song,
-                    DateSubmitted = DateOnly.Parse("11/27/2022")
+                    Song = strongthany,
+                    DateSubmitted = DateOnly.FromDateTime(DateTime.Now)
                 };
                 context.Submissions.Add(submission);
 
                 submission = new Submission
                 {
                     User = testUser3,
-                    Song = song,
-                    DateSubmitted = DateOnly.Parse("11/27/2022")
+                    Song = goodbyeChalon,
+                    DateSubmitted = DateOnly.FromDateTime(DateTime.Now)
+                };
+                context.Submissions.Add(submission);
+
+                submission = new Submission
+                {
+                    User = testUser3,
+                    Song = fleshbound,
+                    DateSubmitted = DateOnly.FromDateTime(DateTime.Now)
                 };
                 context.Submissions.Add(submission);
                 context.SaveChanges();
