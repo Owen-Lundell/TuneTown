@@ -14,27 +14,29 @@
     <p>This is a site about sharing music. Please register an account and if I know you I will approve it for access to post songs.</p>
 </div>
 <h3>See what people are posting!</h3>
-    @{
+@{
         //should post the most recent three submissions
         List<Submission> submission = Model;
-        for (int i = submission.Count - 1; i > submission.Count - 4; i--)
-        {
-            <p>
-            <h4>Posted By: @submission[i].User.UserName</h4>
-            Song Name: @submission[i].Song.SongName<br />
-            Release Date: @submission[i].Song.ReleaseDate<br />
-            Album Name: @submission[i].Song.Album.AlbumName<br />
+    for (int i = submission.Count - 1; i > submission.Count - 4; i--)
+    {
+        <div class="postInfo" style="background-color: cornsilk; padding-bottom:20px">
             <iframe width="560" height="315"
                     src=@("https://www.youtube.com/embed/" + @submission[i].Song.SongLink.Substring(@submission[i].Song.SongLink.Length - 11))
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
+                    allowfullscreen
+                    style="float:left; margin-right:25px;">
             </iframe>
-            <br /><br />
-            Date Posted: @submission[i].DateSubmitted<br />
-            --------------------------------------------------------------------------------
-        </p>
+            <h4><strong>Posted By - @submission[i].User.UserName</strong></h4>
+            <strong>Song Name:</strong> @submission[i].Song.SongName<br />
+                <strong>Release Date:</strong> @submission[i].Song.ReleaseDate.ToShortDateString()<br />
+            <strong>Album Name:</strong> @submission[i].Song.Album.AlbumName<br />
+
+            <br />
+            Date Posted - @submission[i].DateSubmitted<br />
+        </div>
+        <div class="clear" style="clear:left; margin-bottom:30px"></div>
     }
 }
 </body>

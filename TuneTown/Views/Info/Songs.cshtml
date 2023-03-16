@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <button type="submit" class="form-control btn btn-success col-2">Submit</button>
-        <a asp-action="Songs" class="btn btn-secondary col-3">Reset</a>
+        <a asp-action="Songs" class="btn btn-secondary col-3" style="margin-bottom:25px">Reset</a>
     </div>
 </form>
 
@@ -32,13 +32,14 @@
 <!--See if theres a way to select this by distinct songname and artistname-->
 @foreach (Submission submission in Model.DistinctBy(submission => submission.Song.SongName))
 {
-    <p>
+    <img src=@("https://i3.ytimg.com/vi/" + @submission.Song.SongLink.Substring(@submission.Song.SongLink.Length - 11) + "/maxresdefault.jpg")
+        style="width:320px; height:180px; float:left; margin-right:25px">
+    <div class="submissionInfo" style="padding-left:345px; padding-bottom:24px; margin-bottom:20px; background-color: cornsilk">
         <h4>@submission.Song.SongName</h4>
-        Release Date: @submission.Song.ReleaseDate<br />
+        Release Date: @submission.Song.ReleaseDate.ToShortDateString()<br />
         Bit Rate (kbs): @submission.Song.BitRate<br />
         Song Link: @submission.Song.SongLink<br /><br />
 
         Posted by <b>@submission.User.UserName</b> on @submission.DateSubmitted<br />
-        --------------------------------------------------------------------------------
-    </p>
+    </div>
 }

@@ -9,9 +9,8 @@ namespace TuneTown.Models
         
         [Required(ErrorMessage = "Song title is required.")]
         public string SongName { get; set;}
-        
-        public DateOnly? ReleaseDate { get; set; }
-
+        [Required(ErrorMessage = "Release date is required.")]
+        public DateTime ReleaseDate { get; set; }
         [Required(ErrorMessage = "Artist info is required.")]
         public Artist Artist { get; set; }
         [Required(ErrorMessage = "Album info is required.")]
@@ -20,8 +19,8 @@ namespace TuneTown.Models
         public string? SongLength { get; set; }
         public int? BitRate { get; set;}
 
-        [Required(ErrorMessage = "A file upload is required.")]
-        public string SongLink { get; set; } //file upload will go here
+        [Required(ErrorMessage = "A youtube link is required.")]
+        public string SongLink { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
     }

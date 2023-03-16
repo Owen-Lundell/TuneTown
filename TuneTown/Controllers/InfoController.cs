@@ -15,12 +15,8 @@ namespace TuneTown.Controllers
         // Do load testing
 
         //Optional
-        // Get help with making the songs page take two parameters for its distinct method in the view (songname and artist)
         // Implement a way to select filters from one box (html dropdown)
             // possibly a new property in submissions? - ask brian
-        // Implement actual file submissions
-            // Put those submissions on the home page and playback page
-            // Show the filenames for those submissions on the info pages
         // Style the page
         #endregion
 
@@ -88,7 +84,7 @@ namespace TuneTown.Controllers
             {
                 submissions = await (
                   from s in SubmissionRepository.Submissions
-                  where s.Song.Album.ReleaseDate == DateOnly.FromDateTime(DateTime.Parse(releaseDate))
+                  where s.Song.Album.ReleaseDate == DateTime.Parse(releaseDate)
                   select s
                   ).ToListAsync<Submission>();
             }
@@ -170,7 +166,7 @@ namespace TuneTown.Controllers
             {
                 submissions = await (
                   from s in SubmissionRepository.Submissions
-                  where s.Song.ReleaseDate == DateOnly.FromDateTime(DateTime.Parse(releaseDate))
+                  where s.Song.ReleaseDate == DateTime.Parse(releaseDate)
                   select s
                   ).ToListAsync<Submission>();
             }

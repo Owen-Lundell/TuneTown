@@ -11,8 +11,8 @@ namespace TuneTown.Models
         public string AlbumName { get; set; }
         [Required(ErrorMessage = "Group name is required.")]
         public string GroupName { get; set; }
-
-        public DateOnly? ReleaseDate { get; set; }
+        [Required(ErrorMessage = "Release date is required.")]
+        public DateTime ReleaseDate { get; set; }
         public int? TrackTotal { get; set; }
         public string? LabelName { get; set; }
     }

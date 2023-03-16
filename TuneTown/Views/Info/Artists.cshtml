@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <button type="submit" class="form-control btn btn-success col-2">Submit</button>
-        <a asp-action="Artists" class="btn btn-secondary col-3">Reset</a>
+        <a asp-action="Artists" class="btn btn-secondary col-3 style=" margin-bottom:25px"">Reset</a>
     </div>
 </form>
 
@@ -36,20 +36,21 @@
     </div>
     <div class="row">
         <button type="submit" class="form-control btn btn-success col-2">Submit</button>
-        <a asp-action="Artists" class="btn btn-secondary col-3">Reset</a>
+        <a asp-action="Artists" class="btn btn-secondary col-3" style="margin-bottom:25px">Reset</a>
     </div>
 </form>
 
 <!--Submissions-->
 @foreach (Submission submission in Model.DistinctBy(submission => submission.Song.Artist.PublicAlias))
 {
-    <p>
+    <img src=@("https://i3.ytimg.com/vi/" + @submission.Song.SongLink.Substring(@submission.Song.SongLink.Length - 11) + "/maxresdefault.jpg")
+        style="width:320px; height:180px; float:left; margin-right:25px">
+    <div class="submissionInfo" style="padding-left:345px; margin-bottom:20px; padding-bottom:23px; background-color: cornsilk">
         <h4>@submission.Song.Artist.PublicAlias</h4>
         Artist's First Name: @submission.Song.Artist.FirstName<br />
         Artist's Last Name: @submission.Song.Artist.LastName<br />
         Affiliated Labels: @submission.Song.Artist.AffiliatedLabels<br /><br />
 
         Posted by <b>@submission.User.UserName</b> on @submission.DateSubmitted<br />
-        --------------------------------------------------------------------------------
-    </p>
+    </div>
 }

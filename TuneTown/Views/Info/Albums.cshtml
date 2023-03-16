@@ -48,21 +48,22 @@
     </div>
     <div class="row">
         <button type="submit" class="form-control btn btn-success col-2">Submit</button>
-        <a asp-action="Albums" class="btn btn-secondary col-3">Reset</a>
+        <a asp-action="Albums" class="btn btn-secondary col-3" style="margin-bottom:25px">Reset</a>
     </div>
 </form>
 
 <!--Submissions-->
 @foreach (Submission submission in Model.DistinctBy(submission => submission.Song.Album.AlbumName))
 {
-    <p>
+    <img src=@("https://i3.ytimg.com/vi/" + @submission.Song.SongLink.Substring(@submission.Song.SongLink.Length - 11) + "/maxresdefault.jpg")
+        style="width:320px; height:180px; float:left; margin-right:25px">
+    <div class="submissionInfo" style="padding-left:345px; padding-bottom:-1px; margin-bottom:20px; background-color: cornsilk">
         <h4>@submission.Song.Album.AlbumName</h4>
         Group Name: @submission.Song.Album.GroupName<br />
-        Release Date: @submission.Song.Album.ReleaseDate<br />
+        Release Date: @submission.Song.Album.ReleaseDate.ToShortDateString()<br />
         Track Total: @submission.Song.Album.TrackTotal<br />
         Producing Label: @submission.Song.Album.LabelName<br /><br />
 
         Posted by <b>@submission.User.UserName</b> on @submission.DateSubmitted<br />
-        --------------------------------------------------------------------------------
-    </p>
+    </div>
 }

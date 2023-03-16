@@ -32,7 +32,7 @@
                 <input asp-for="Song.BitRate" /><br />
             </div>
             <div class="col-sm-3">
-                <label asp-for="Song.SongLink">Song Link: </label><br />
+                <label asp-for="Song.SongLink">YouTube Song Link: </label><br />
                 <input asp-for="Song.SongLink" /><br />
             </div><p></p>
 
@@ -83,8 +83,8 @@
         </div>
     </form>
 </div>
-@section Scripts {
-
+@section Scripts 
+{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

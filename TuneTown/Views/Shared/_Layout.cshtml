@@ -32,6 +32,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Info" asp-action="Index">Info</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Info" asp-action="Artists">Artists</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Info" asp-action="Albums">Albums</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Info" asp-action="Songs">Songs</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Playback" asp-action="Index">Playback</a>
                         </li>
                         @if (User.IsInRole("Poster"))

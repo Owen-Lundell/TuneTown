@@ -62,7 +62,7 @@ namespace TuneTown.Data
                 {
                     AlbumName = "Fearless",
                     GroupName = "Taylor Swift",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2008, 11, 11)),
+                    ReleaseDate = new DateTime(2008, 11, 11),
                     TrackTotal = 13,
                     LabelName = "Big Machine Records",
                 };
@@ -73,7 +73,7 @@ namespace TuneTown.Data
                 Song song = new() 
                 {
                     SongName = "You Belong With Me",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2008, 11, 11)),
+                    ReleaseDate = new DateTime(2008, 11, 11),
                     Artist = artist,
                     Album = album,
                     SongLength = "3:55",
@@ -99,7 +99,7 @@ namespace TuneTown.Data
                 {
                     AlbumName = "Twin Galaxies",
                     GroupName = "Delta Sleep",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2015, 06, 08)),
+                    ReleaseDate = new DateTime(2015, 06, 08),
                     TrackTotal = 11,
                     LabelName = "Big Scary Monsters Recording Company",
                 };
@@ -109,7 +109,7 @@ namespace TuneTown.Data
                 Song strongthany = new()
                 {
                     SongName = "Strongthany",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2015, 06, 08)),
+                    ReleaseDate = new DateTime(2015, 06, 08),
                     Artist = deltaSleep,
                     Album = twinGalaxies,
                     SongLength = "5:12",
@@ -135,7 +135,7 @@ namespace TuneTown.Data
                 {
                     AlbumName = "Backdrops",
                     GroupName = "Nekomata Master",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2009, 09, 25)),
+                    ReleaseDate = new DateTime(2009, 09, 25),
                     TrackTotal = 15,
                     LabelName = "Konami",
                 };
@@ -145,7 +145,7 @@ namespace TuneTown.Data
                 Song goodbyeChalon = new()
                 {
                     SongName = "Good-bye Chalon",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2010, 11, 21)),
+                    ReleaseDate = new DateTime(2010, 11, 21),
                     Artist =  nekomataMaster,
                     Album = backdrops,
                     SongLength = "5:12",
@@ -171,7 +171,7 @@ namespace TuneTown.Data
                 {
                     AlbumName = "Rituals",
                     GroupName = "goreshit",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2013, 10, 2)),
+                    ReleaseDate = new DateTime(2013, 10, 2),
                     TrackTotal = 15,
                     LabelName = "Kitty on Fire Records",
                 };
@@ -181,7 +181,7 @@ namespace TuneTown.Data
                 Song fleshbound = new()
                 {
                     SongName = "Fleshbound",
-                    ReleaseDate = DateOnly.FromDateTime(new DateTime(2013, 10, 2)),
+                    ReleaseDate = new DateTime(2013, 10, 2),
                     Artist = goreshit,
                     Album = rituals,
                     SongLength = "6:16",

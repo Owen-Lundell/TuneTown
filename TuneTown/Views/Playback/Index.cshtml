@@ -2,36 +2,45 @@
 @{
     ViewData["Title"] = "Playback";
 }
-<h1>Listen to Some Tunes</h1>
+<h1 class="text-center" style="margin-bottom:30px">Listen to Some Tunes</h1>
 @foreach (Submission submission in Model)
 {
     <!--Song Info-->
-    <p>
+    <div class="postInfo" style="background-color: cornsilk; ">
         <iframe width="560" height="315"
                 src=@("https://www.youtube.com/embed/" + @submission.Song.SongLink.Substring(@submission.Song.SongLink.Length - 11))
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
+                allowfullscreen
+                style="float:left; margin-right:25px;">
         </iframe><br />
-        Artist: @submission.Song.Artist.PublicAlias<br />
-        Album: @submission.Song.Album.AlbumName<br />
-        ---------------------------------------------------------
-    </p>
+        <div class="playbackInfo" style="padding-bottom:25px; margin-bottom:10px; background-color: cornsilk">
+            <strong class="m-0">Artist:</strong> @submission.Song.Artist.PublicAlias<br />
+            <strong class="m-0">Album:</strong> @submission.Song.Album.AlbumName<br />
+        </div>
+    </div>
+
     <!--Comments-->
-    <a asp-action="Comment" asp-route-songId="@submission.Song.SongId" class="btn-sm btn-secondary col-3 m-3">Add Comment</a>
     if (@submission.Song.Comments.Count != 0)
     {
-        <h5 class="m-3">Comment@(@submission.Song.Comments.Count > 1 ? "s" : "")</h5>
-
+        <h5 class="text-left">Comment@(@submission.Song.Comments.Count > 1 ? "s" : "")
+            <a asp-action="Comment" asp-route-songId="@submission.Song.SongId" class="btn-sm btn-secondary" style="float:right">Add Comment</a>
+        </h5>
+        
         foreach (Comment comment in submission.Song.Comments)
         {
-            <p>
+            <div class="commentInfo" style="margin-left:585px; padding-bottom:15px; padding-top:15px; margin-bottom:10px; background-color: lightsteelblue">
                 <b class="m-3">@comment.CommentText</b><br />
                 <strong class="m-3">By:</strong> @comment.Commenter.UserName<br />
                 <strong class="m-3">Date:</strong> @comment.PostDate.Date.ToString("dddd, MMMM dd, yyyy")<br />
-            ---------------------------------------------------------
-            </p>
+            </div>
         }
     }
+    else
+    {
+        <a asp-action="Comment" asp-route-songId="@submission.Song.SongId" class="btn-sm btn-secondary" style="float:left">Add Comment</a>
+    }
+        
+    <div class="clear" style="clear:left; margin-bottom:30px"></div>
 }
