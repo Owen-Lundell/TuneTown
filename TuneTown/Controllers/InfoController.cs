@@ -11,7 +11,6 @@ namespace TuneTown.Controllers
     {
         #region TODO
         //Required
-        // Add unit tests
         // Do load testing
 
         //Optional
