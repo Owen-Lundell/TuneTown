@@ -1,15 +1,20 @@
 ﻿using TuneTown.Migrations;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System;
+using System.Threading.Tasks;
 using TuneTown.Models;
+using EntityFramework.Testing;
 
 namespace TuneTown.Repo
 {
     public class FakeSubmissionRepository : ISubmissionRepository
     {
-        public List<Submission> submissions = new();
+        public List<Submission> submissions = new List<Submission>();
         public IQueryable<Submission> Submissions
         {
-            get { return submissions.AsQueryable<Submission>(); }
+            get { return new InMemoryAsyncQueryable<Submission>((IQueryable<Submission>)submissions); }
         }
 
 #pragma warning disable CS1998
