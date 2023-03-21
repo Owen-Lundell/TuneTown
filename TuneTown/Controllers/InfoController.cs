@@ -11,7 +11,6 @@ namespace TuneTown.Controllers
     {
         #region TODO
         //Required
-        // Add unit tests
         // Do load testing
 
         //Optional
@@ -199,8 +198,12 @@ namespace TuneTown.Controllers
         [HttpPost]
         public async Task<IActionResult> Submission(Submission model)
         {
-            model.User = await userManager.GetUserAsync(User);
-            if (SubmissionRepository.CreateSubmissionAsync(model).Result > 0)
+            if (userManager != null)
+            {
+                model.User = await userManager.GetUserAsync(User);
+            }
+            
+            if (await SubmissionRepository.CreateSubmissionAsync(model) > 0)
             {
                 return RedirectToAction("Index", new { submissionId = model.SubmissionId });
             }

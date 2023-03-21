@@ -8,7 +8,7 @@ namespace TuneTown.Repo
 {
     public class SubmissionRepository : ISubmissionRepository
     {
-        private readonly ApplicationDbContext context; //revert this is readonly causes issues
+        private readonly ApplicationDbContext context;
         public SubmissionRepository(ApplicationDbContext appDbContext)
         {
             context = appDbContext;

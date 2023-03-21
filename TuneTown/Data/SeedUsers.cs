@@ -11,8 +11,8 @@ namespace TuneTown.Data
         {
             UserManager<AppUser> userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
             RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string username = "admin";
-            string password = "sesame";
+            string username = "Admin";
+            string password = "Password!123";
             string adminRole = "Admin";
             string posterRole = "Poster";
 

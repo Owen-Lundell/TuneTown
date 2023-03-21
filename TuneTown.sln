@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuneTown", "TuneTown\TuneTown.csproj", "{563F9D36-2979-4CC8-A7BF-E54B4E492FB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuneTown", "TuneTown\TuneTown.csproj", "{563F9D36-2979-4CC8-A7BF-E54B4E492FB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuneTownTests", "TuneTownTests\TuneTownTests.csproj", "{755E228B-0E94-4635-AB9F-18FC9CDD1379}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{563F9D36-2979-4CC8-A7BF-E54B4E492FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{563F9D36-2979-4CC8-A7BF-E54B4E492FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{563F9D36-2979-4CC8-A7BF-E54B4E492FB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{755E228B-0E94-4635-AB9F-18FC9CDD1379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{755E228B-0E94-4635-AB9F-18FC9CDD1379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{755E228B-0E94-4635-AB9F-18FC9CDD1379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{755E228B-0E94-4635-AB9F-18FC9CDD1379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
