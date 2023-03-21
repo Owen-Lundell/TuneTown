@@ -7,7 +7,7 @@ using System.Data;
 
 namespace TuneTown.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private UserManager<AppUser> userManager;
